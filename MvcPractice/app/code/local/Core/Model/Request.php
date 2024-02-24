@@ -12,18 +12,24 @@ class Core_Model_Request
         $this->_modeluName = isset($uri[0]) ? $uri[0] : 'page';
         $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
         $this->_actionName = isset($uri[2]) ? $uri[2] : 'index';
-
-
     }
-    public function getParams($key = '')
-    {
-        return ($key == '')
-            ? $_REQUEST
-            : (isset($_REQUEST[$key])
-                ? $_REQUEST[$key]
-                : '');
-    }
-    public function getPostData($key = '')
+    // public function getParams($key = '')
+    // {
+    //     return ($key == '')
+    //         ? $_REQUEST
+    //         : (isset($_REQUEST[$key])
+    //             ? $_REQUEST[$key]
+    //             : '');
+    // }
+    public function getParams($key = '', $arg = null) {
+		return ($key == '')
+			? $_REQUEST
+			: (isset($_REQUEST[$key])
+				? $_REQUEST[$key]
+				: ((!is_null($arg)) ? $arg : '')
+			);
+	}
+     public function getPostData($key = '')
     {
         return ($key == '')
             ? $_POST
@@ -50,6 +56,9 @@ class Core_Model_Request
     {
         $uri = $_SERVER['REQUEST_URI'];
         $uri = str_replace('/practice/MvcPractice/', '', $uri);
+        if (strpos($uri, '?')) {
+            $uri = stristr($uri, '?', true);
+        }
         return $uri;
     }
     public function getModuleName()

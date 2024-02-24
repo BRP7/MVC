@@ -31,11 +31,14 @@ class Core_Model_Abstract
     {
         // $modelClass = get_class($this);
         // $modelClass = str_replace('_Model_', '_Model_Resource_', $modelClass);
-        return new $this->_resourceClass();
+        return new $this->_resourceClass();// Catalog_Model_Resource_Product
     }
     public function getCollection()
     {
-        return new $this->_collectionClass();
+         $collection = new $this->_collectionClass();//obj  Catalog_Model_Resource_Collection_Product
+         $collection->setResource($this->getResource());
+         $collection->select();
+         return $collection;
     }
 
     public function getTableName()
@@ -89,12 +92,15 @@ class Core_Model_Abstract
     }
     public function delete()
     {
+        if($this->getId()) {
         $this->getResource()
             ->delete($this);
+        }
         return $this;
     }
     public function load($id, $column = null)
     {
+        
         $this->_data = $this->getResource()->load($id, $column);
         return $this;
     }

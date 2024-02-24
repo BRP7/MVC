@@ -4,6 +4,8 @@ class Core_Block_Abstract
     public $template;
     public function setTemplate($template)
     {
+        // echo "yyyy".$template;
+        // echo "<br>";
         $this->template = $template;
         return $this;
     }
@@ -46,6 +48,8 @@ class Core_Block_Abstract
     }
     public function render()
     {
+        // echo "hhh".$this->getTemplate();
+        // echo "<br>";
         include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();
     }
     public function getImageUrl($file)

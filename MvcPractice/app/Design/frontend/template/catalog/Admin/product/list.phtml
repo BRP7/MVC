@@ -1,0 +1,17 @@
+<?php
+$productCollection = Mage::getModel("catalog/product")->getCollection();//Catalog_Model_Resource_Collection_Product Object 
+// print_r($productCollection);    
+// $productCollection->addFieldToFilter('name','abc');
+// $productCollection->addFieldToFilter('product_id','["in"=>[1,12,3]]');
+// $productCollection->getData();
+foreach ($productCollection->getData() as  $value) {
+    echo "Product Id:";
+    echo "".$value->getProductId();
+    echo "  Status:";
+    echo "".$value->getStatus();
+    echo "<br>";
+    // echo "".$value->getProductId();
+    # code...
+}
+// echo 123344332344;
+?>

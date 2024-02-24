@@ -3,7 +3,7 @@ class Page_Controller_Index extends Core_Controller_Front_Action
 {
     public function indexAction()
     {
-        $layout = $this->getLayout();
+        $layout = $this->getLayout();//As soon As getLayout Called Constructor Of Core_Block_Layout is executed and setTemplate method is run & then prepareChildren inside this function createBlock & addChild will be called in which we are setting Associative array for keys->head,header,footer,content
         $layout->getChild('head')->addJs('js/navigation.js');
         $layout->getChild('head')->addJs('js/page.js');
         $layout->getChild('head')->addCss('css/navigation.css');
